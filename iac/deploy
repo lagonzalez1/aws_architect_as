@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+echo "== Deploye se bucket via Cloud Formation"
+
+STACK_NAME="cf-s3-simple"
+
+
+# no execute change set is traditional to then have to approve the changes on the console
+aws cloudformation deploy \
+--template-file template.yaml \
+--region us-east-1 \
+--no-execute-changeset \
+--stack-name $STACK_NAME

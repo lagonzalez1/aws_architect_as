@@ -1,0 +1,6 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A simple s3 bucket example using cloud formation
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    # We dont need to supply bucket name since it does it for us.

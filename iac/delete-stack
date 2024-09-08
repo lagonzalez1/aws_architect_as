@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Need to provide region since it will default to different region
+
+echo "== Delete s3 bucket via Cloud Formation"
+
+STACK_NAME="cf-s3-simple"
+
+aws cloudformation delete-stack \
+--stack-name $STACK_NAME \
+--region us-east-1
