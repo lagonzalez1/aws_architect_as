@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+
+# We want to create a bucket based on the argument provided (String name)
+# Check if there first argument is provided
+
+
+if [ -z "$1"]; then
+    echo "There needs to be at lease a argument provided"
+    exit 1
+fi
+BUCKET_NAME=$1
+
+echo "== Create bucket"
+
+aws s3api create-bucket \
+--bucket $BUCKET_NAME \
+--create-bucket-configuration="LocationConstraint=us-west-1" \
+--query Location \
+--output text

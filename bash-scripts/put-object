@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+
+
+if [-z "$1"]; then
+    echo "Need to specify a object to create and upload"
+    exit 1
+fi
+
+SOME_FILE=$1
+BUCKET_NAME=$2
+PAYLOAD=$3
+
+aws s3api put-object \
+--bucket $BUCKET_NAME \
+--key $SOME_FILE \
+--body $PAYLOAD

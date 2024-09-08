@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+echo "== Sync"
+
+# Exit if any error occurs
+set -e
+
+# where we will store these random files
+OUT="/tmp/s3-bash-scripts"
+
+
+# remove folder if it already exist
+rm -r $OUT
+
+# create output folder - no error if existing, make parent directories as needed
+mkdir -p $OUT
+
+NUM_FILES=$((RANDOM % 6 + 5))
+
+for((i = 1; i<= NUM_FILES; i++)); do
+    #Generate the files
+    FILENAME="$OUT/file_$i.txt"
+    
+    #Generate random data and write to the file
+    dd if=/dev/urandom of="$FILENAME" bs=1024 count=$((RANDOM % 1024 + 1)) 2>/dev/null
+done
+
+tree $OUT
