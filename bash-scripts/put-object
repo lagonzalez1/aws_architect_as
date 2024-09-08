@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
 
+echo "== Put object"
 
-
-if [-z "$1"]; then
-    echo "Need to specify a object to create and upload"
+if [ -z "$1"]; then
+    echo "There needs to be a bucket name eg .. /bucket my-bucket-name"
     exit 1
 fi
 
-SOME_FILE=$1
-BUCKET_NAME=$2
-PAYLOAD=$3
+if [ -z "$2"]; then
+    echo "There needs to be a filename"
+    exit
+fi
+
+BUCKET_NAME=$1
+FILENAME=$2
+
+KEY=$(basename "$FILENAME")
 
 aws s3api put-object \
 --bucket $BUCKET_NAME \
---key $SOME_FILE \
---body $PAYLOAD
+--body $FILENAME \
+--key $KEY
